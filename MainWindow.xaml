@@ -17,16 +17,20 @@
         </Grid.ColumnDefinitions>
 
         <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden"/>
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" ButtonBase.Click="StackPanel_Click">
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal" ButtonBase.Click="StackPanel_Click">
             <StackPanel.Resources>
                 <Style TargetType="Button">
                     <Setter Property="Width" Value="100"/>
-                    <Setter Property="Height" Value="40"/>
+                    <Setter Property="Height" Value="35"/>
                     <Setter Property="VerticalAlignment" Value="Center"/>
                 </Style>
             </StackPanel.Resources>
             <Button x:Name="backButton" Content="BACK"/>
             <Button x:Name="saveButton" Content="SAVE"/>
         </StackPanel>
+
+        <Canvas Grid.Column="1" x:Name="graph">
+            
+        </Canvas>
     </Grid>
 </Window>

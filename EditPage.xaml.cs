@@ -49,7 +49,7 @@ namespace JsonTextGenerator {
         private void StackPanel_Click(object sender, RoutedEventArgs e) {
             string button = (e.OriginalSource as Button).Name;
             if (button.Contains("rem")) {
-                if(button == "remY" && que.postY != null) {
+                if (button == "remY" && que.postY != null) {
                     this.que.postY = null;
                 }
                 else if(button == "remN" && que.postN != null) {
@@ -59,18 +59,19 @@ namespace JsonTextGenerator {
                     this.que.postM = null;
                 }
 
+                VisibleChanged(null, new DependencyPropertyChangedEventArgs());
                 return;
             }
 
             EditPage innerQuestion = new EditPage();
             
-            if (button == "yButton") {
+            if (button == "postY") {
                 if (que.postY == null)
                     que.postY = innerQuestion.que;
                 else
                     innerQuestion.UpdateQuestion(que.postY);
             }
-            else if (button == "nButton") {
+            else if (button == "postN") {
                 if (que.postN == null)
                     que.postN = innerQuestion.que;
                 else
@@ -84,6 +85,12 @@ namespace JsonTextGenerator {
             }
 
             Manager.mainFrame.Navigate(innerQuestion);
+        }
+
+        private void VisibleChanged(object sender, DependencyPropertyChangedEventArgs e) {
+            postY.Content = que.postY == null ? "Create" : "Open";
+            postN.Content = que.postN == null ? "Create" : "Open";
+            postM.Content = que.postM == null ? "Create" : "Open";
         }
     }
 }

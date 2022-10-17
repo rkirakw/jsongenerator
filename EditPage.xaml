@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:JsonTextGenerator"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="EditPage">
+      Title="EditPage" IsVisibleChanged="VisibleChanged">
 
     <Grid Background="Black">
         <Grid.ColumnDefinitions>
@@ -34,36 +34,35 @@
                 <Style TargetType="TextBox">
                     <Setter Property="Margin" Value="0 8 0 0"/>
                 </Style>
-                
+
                 <Style TargetType="Button">
                     <Setter Property="Height" Value="20"/>
-                    <Setter Property="Content" Value="Create"/>
                     <Setter Property="Margin" Value="0 8 0 0"/>
-
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding }"/>
-                    </Style.Triggers>
                 </Style>
             </StackPanel.Resources>
             
             <TextBox x:Name="question" Margin="0 4 0 0" Text="{Binding question}"/>
             <TextBox x:Name="yButton" Text="{Binding yes}"/>
             <StackPanel Orientation="Horizontal">
-                <Button Tag="create" x:Name="postY"/>
+                
+                <Button x:Name="postY"/>
+                
                 <Button x:Name="remY" Content="Remove"/>
             </StackPanel>
             <TextBox x:Name="nButton" Text="{Binding no}"/>
             <StackPanel Orientation="Horizontal">
-                <Button Tag="create" x:Name="postN"/>
+                
+                <Button x:Name="postN"/>
+                
                 <Button x:Name="remN" Content="Remove"/>
             </StackPanel>
             <TextBox x:Name="mButton" Text="{Binding maybe}"/>
             <StackPanel Orientation="Horizontal">
-                <Button Tag="create" x:Name="postM"/>
+
+                <Button x:Name="postM"/>
+
                 <Button x:Name="remM" Content="Remove"/>
             </StackPanel>
-            
-
         </StackPanel>
     </Grid>
 </Page>
