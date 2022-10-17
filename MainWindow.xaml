@@ -30,7 +30,7 @@
         </StackPanel>
 
         <Canvas Grid.Column="1" x:Name="graph">
-            
+
         </Canvas>
     </Grid>
 </Window>

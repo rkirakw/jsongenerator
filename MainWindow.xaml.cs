@@ -14,11 +14,14 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.Json;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace JsonTextGenerator {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
+
+
     public partial class MainWindow : Window {
         public static EditPage mainPage = new EditPage();
 
@@ -27,6 +30,7 @@ namespace JsonTextGenerator {
 
             Manager.mainFrame = mainFrame;
             Manager.mainFrame.Navigate(mainPage);
+            Manager.qPoints.listChangedEvent += UpdateGraph;
         }
 
         private void StackPanel_Click(object sender, RoutedEventArgs e) {
@@ -34,12 +38,14 @@ namespace JsonTextGenerator {
             if (button == "backButton" && Manager.mainFrame.CanGoBack)
                 Manager.mainFrame.GoBack();
             else if(button == "saveButton"){
-                var options = new JsonSerializerOptions() { DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.Always };
+                var options = new JsonSerializerOptions() { DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull };
                 string json = JsonSerializer.Serialize(mainPage.que, options);
                 File.WriteAllText("text.json", json);
             }
         }
 
+        private void UpdateGraph(Point p) {
 
+        }
     }
 }

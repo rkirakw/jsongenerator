@@ -34,7 +34,8 @@ namespace JsonTextGenerator {
 
     public partial class EditPage : Page {
         public Question que = new Question();
-
+        private int innerX = 0;
+        private int innerY = 0;
 
         public EditPage() {
             InitializeComponent();
@@ -64,7 +65,8 @@ namespace JsonTextGenerator {
             }
 
             EditPage innerQuestion = new EditPage();
-            
+            innerX++;
+
             if (button == "postY") {
                 if (que.postY == null)
                     que.postY = innerQuestion.que;
