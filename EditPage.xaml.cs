@@ -34,8 +34,6 @@ namespace JsonTextGenerator {
 
     public partial class EditPage : Page {
         public Question que = new Question();
-        private int innerX = 0;
-        private int innerY = 0;
 
         public EditPage() {
             InitializeComponent();
@@ -48,7 +46,8 @@ namespace JsonTextGenerator {
         }
 
         private void StackPanel_Click(object sender, RoutedEventArgs e) {
-            string button = (e.OriginalSource as Button).Name;
+            Button send = (e.OriginalSource as Button);
+            string button = send.Name;
             if (button.Contains("rem")) {
                 if (button == "remY" && que.postY != null) {
                     this.que.postY = null;
@@ -65,7 +64,7 @@ namespace JsonTextGenerator {
             }
 
             EditPage innerQuestion = new EditPage();
-            innerX++;
+            
 
             if (button == "postY") {
                 if (que.postY == null)
@@ -85,6 +84,7 @@ namespace JsonTextGenerator {
                 else
                     innerQuestion.UpdateQuestion(que.postM);
             }
+
 
             Manager.mainFrame.Navigate(innerQuestion);
         }

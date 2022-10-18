@@ -30,13 +30,15 @@ namespace JsonTextGenerator {
 
             Manager.mainFrame = mainFrame;
             Manager.mainFrame.Navigate(mainPage);
-            Manager.qPoints.listChangedEvent += UpdateGraph;
+            Manager.changePos += UpdateGraph;
         }
 
         private void StackPanel_Click(object sender, RoutedEventArgs e) {
             string button = (e.OriginalSource as Button).Name;
-            if (button == "backButton" && Manager.mainFrame.CanGoBack)
+            if (button == "backButton" && Manager.mainFrame.CanGoBack) {
+                Manager.MovePos(new Point(-1, 0), false);
                 Manager.mainFrame.GoBack();
+            }
             else if(button == "saveButton"){
                 var options = new JsonSerializerOptions() { DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull };
                 string json = JsonSerializer.Serialize(mainPage.que, options);

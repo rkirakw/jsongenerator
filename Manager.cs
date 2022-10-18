@@ -10,25 +10,22 @@ using System.Windows.Controls;
 namespace JsonTextGenerator {
 
     public delegate void AddElementEvent(Point p);
-    class ChangeTrackList: List<Point> {
-        public event AddElementEvent listChangedEvent;
-
-        public new void Add(Point item) {
-            base.Add(item);
-            listChangedEvent?.Invoke(item);
-        }
-    }
 
     class Manager {
         public static Frame mainFrame;
-        public static ChangeTrackList qPoints;
+        public static Point pos = new Point(0,0);
+        public static event AddElementEvent changePos;
 
-        static Manager() {
-            qPoints = new ChangeTrackList();
-        }
 
-        public static void Add(Point item) {
-            qPoints.Add(item);
+        public static void MovePos(Point item, bool inv = true) {
+            pos.X += item.X;
+            pos.Y += item.Y;
+
+            if (pos.Y == 3)
+                pos.Y = 0;
+
+            if(inv) 
+                changePos?.Invoke(pos);
         }
     }
 }
